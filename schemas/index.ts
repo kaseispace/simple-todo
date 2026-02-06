@@ -4,15 +4,30 @@ import { z } from 'zod'
    Models
 ========= */
 
-export const UserSchema = z.object({
+export const CategorySchema = z.object({
   id: z.number(),
-  name: z.string(),
-  email: z.string(),
+  title: z.string(),
   createdAt: z.string(),
   updatedAt: z.string(),
 })
 
-export type User = z.infer<typeof UserSchema>
+export type Category = z.infer<typeof CategorySchema>
+
+export const NoteSchema = z.object({
+  id: z.number(),
+  category_id: z.number(),
+  content: z.string(),
+  createdAt: z.string(),
+  updatedAt: z.string(),
+})
+
+export type Note = z.infer<typeof NoteSchema>
+
+export const CategoryWithNotesSchema = CategorySchema.extend({
+  notes: z.array(NoteSchema),
+})
+
+export type CategoryWithNotes = z.infer<typeof CategoryWithNotesSchema>
 
 /* =========
    Inputs
