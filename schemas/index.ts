@@ -33,13 +33,11 @@ export type CategoryWithNotes = z.infer<typeof CategoryWithNotesSchema>
    Inputs
 ========= */
 
-export const createUserSchema = z.object({
-  name: z.string().min(1),
-  email: z.email(),
+export const createCategorySchema = z.object({
+  title: z.string().min(1, 'カテゴリ名を入力してください').max(50, '50文字以内で入力してください'),
 })
 
-export type CreateUser = z.input<typeof createUserSchema>
-export type CreateUserOutput = z.output<typeof createUserSchema>
+export type CreateCategory = z.infer<typeof createCategorySchema>
 
 /* =========
    Errors
