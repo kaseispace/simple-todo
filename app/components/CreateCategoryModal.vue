@@ -3,63 +3,36 @@ import { createCategorySchema, ApiErrorSchema } from '#schemas/index'
 import type { CreateCategory } from '#schemas/index'
 import type { FormSubmitEvent } from '@nuxt/ui'
 
-const { createCategory } = useCategoryList()
-const toast = useToast()
+const { refresh, createCategory } = useCategoryList()
+const { showSuccess, showWarning, showError } = useAppToast()
 
 const state = reactive<CreateCategory>({
   title: '',
 })
 
+const open = ref(false)
+
+defineShortcuts({
+  o: () => open.value = !open.value,
+})
+
 const onSubmit = async (event: FormSubmitEvent<CreateCategory>) => {
   try {
     await createCategory(event.data)
-
-    toast.add({
-      title: 'Success',
-      description: 'カテゴリを追加しました',
-      color: 'success',
-      progress: false,
-      ui: {
-        title: 'text-green-400',
-        description: 'text-gray-900 dark:text-white',
-      },
-      duration: 2000,
-    })
-
+    await refresh()
+    showSuccess('カテゴリを追加しました', { progress: false })
     state.title = ''
-
-    // setTimeout(async () => {
-    //   await refreshUsers()
-    // }, 5000)
+    open.value = false
   }
   catch (err) {
     const parsed = ApiErrorSchema.safeParse(err)
 
     if (parsed.success) {
-      const apiErr = parsed.data
-
-      toast.add({
-        title: 'Error',
-        description: apiErr.data.message || 'カテゴリの追加に失敗しました',
-        color: 'warning',
-        progress: false,
-        ui: {
-          title: 'text-red-400',
-          description: 'text-gray-900 dark:text-white',
-        },
-      })
+      const error = parsed.data
+      showWarning(error.data.message || 'カテゴリの追加に失敗しました', { progress: false })
     }
     else {
-      toast.add({
-        title: 'Error',
-        description: '予期しないエラーが発生しました',
-        color: 'error',
-        progress: false,
-        ui: {
-          title: 'text-red-400',
-          description: 'text-gray-900 dark:text-white',
-        },
-      })
+      showError('予期しないエラーが発生しました', { progress: false })
     }
   }
 }
@@ -67,6 +40,7 @@ const onSubmit = async (event: FormSubmitEvent<CreateCategory>) => {
 
 <template>
   <UModal
+    v-model:open="open"
     title="新しいカテゴリを作成"
     description="カテゴリ名を入力してください。"
   >
