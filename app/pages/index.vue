@@ -18,7 +18,7 @@ const { categoryList } = useCategoryList()
         </h3>
 
         <div class="absolute right-0">
-          <CategoryActionsMenu />
+          <CategoryActionsMenu :id="category.id" />
         </div>
       </div>
 
