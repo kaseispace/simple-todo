@@ -16,5 +16,17 @@ export const useCategoryList = () => {
     }
   }
 
-  return { categoryList, pending, error, refresh, createCategory }
+  const deleteCategory = async (id: number) => {
+    try {
+      return await $fetch(`/api/categories/${id}`, {
+        method: 'DELETE',
+      })
+    }
+    catch (err: unknown) {
+      const error = err as { data?: unknown }
+      throw error.data || error
+    }
+  }
+
+  return { categoryList, pending, error, refresh, createCategory, deleteCategory }
 }
