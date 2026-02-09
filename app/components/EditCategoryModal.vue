@@ -54,27 +54,13 @@ const onSubmit = async (event: FormSubmitEvent<CreateCategory>) => {
     @update:open="emit('update:open', $event)"
   >
     <template #body>
-      <UForm
-        :schema="createCategorySchema"
-        :state="state"
-        @submit="onSubmit"
-      >
-        <UFormField
-          label="カテゴリ名"
-          name="title"
-        >
-          <UInput
-            v-model="state.title"
-            class="w-full"
-            color="neutral"
-          />
+      <UForm :schema="createCategorySchema" :state="state" @submit="onSubmit">
+        <UFormField label="カテゴリ名" name="title">
+          <UInput v-model="state.title" class="w-full" color="neutral" />
         </UFormField>
 
         <div class="flex justify-end mt-3">
-          <UButton
-            type="submit"
-            color="secondary"
-          >
+          <UButton type="submit" color="secondary">
             編集
           </UButton>
         </div>

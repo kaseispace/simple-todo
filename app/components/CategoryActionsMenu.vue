@@ -56,10 +56,7 @@ const items: DropdownMenuItem[][] = [
 <template>
   <UDropdownMenu
     :items="items"
-    :content="{
-      align: 'end',
-      side: 'bottom',
-    }"
+    :content="{ align: 'end', side: 'bottom' }"
     :ui="{ content: 'w-auto min-w-0' }"
   >
     <UButton
@@ -69,10 +66,6 @@ const items: DropdownMenuItem[][] = [
       icon="i-lucide-ellipsis-vertical"
     />
 
-    <EditCategoryModal
-      :id="id"
-      v-model:open="open"
-      :title="title"
-    />
+    <EditCategoryModal :id="id" v-model:open="open" :title="title" />
   </UDropdownMenu>
 </template>

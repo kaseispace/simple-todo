@@ -39,11 +39,7 @@ const onSubmit = async (event: FormSubmitEvent<CreateCategory>) => {
 </script>
 
 <template>
-  <UModal
-    v-model:open="open"
-    title="新しいカテゴリを作成"
-    description="カテゴリ名を入力してください。"
-  >
+  <UModal v-model:open="open" title="新しいカテゴリを作成" description="カテゴリ名を入力してください。">
     <UButton
       icon="i-lucide-pen"
       label="カテゴリを追加"
@@ -52,27 +48,13 @@ const onSubmit = async (event: FormSubmitEvent<CreateCategory>) => {
     />
 
     <template #body>
-      <UForm
-        :schema="createCategorySchema"
-        :state="state"
-        @submit="onSubmit"
-      >
-        <UFormField
-          label="カテゴリ名"
-          name="title"
-        >
-          <UInput
-            v-model="state.title"
-            class="w-full"
-            color="neutral"
-          />
+      <UForm :schema="createCategorySchema" :state="state" @submit="onSubmit">
+        <UFormField label="カテゴリ名" name="title">
+          <UInput v-model="state.title" class="w-full" color="neutral" />
         </UFormField>
 
         <div class="flex justify-end mt-3">
-          <UButton
-            type="submit"
-            color="secondary"
-          >
+          <UButton type="submit" color="secondary">
             作成
           </UButton>
         </div>
