@@ -5,9 +5,22 @@ export const useCategoryList = () => {
 
   const createCategory = async (input: CreateCategory): Promise<CreateCategory> => {
     try {
-      return await $fetch('/api/categories', {
+      return await $fetch<CreateCategory>('/api/categories', {
         method: 'POST',
         body: input,
+      })
+    }
+    catch (err: unknown) {
+      const error = err as { data?: unknown }
+      throw error.data || error
+    }
+  }
+
+  const updateCategory = async (id: number, data: { title: string }) => {
+    try {
+      return await $fetch(`/api/categories/${id}`, {
+        method: 'PUT',
+        body: data,
       })
     }
     catch (err: unknown) {
@@ -28,5 +41,5 @@ export const useCategoryList = () => {
     }
   }
 
-  return { categoryList, pending, error, refresh, createCategory, deleteCategory }
+  return { categoryList, pending, error, refresh, createCategory, updateCategory, deleteCategory }
 }
