@@ -4,7 +4,14 @@ import type { DropdownMenuItem } from '@nuxt/ui'
 
 const props = defineProps<{
   id: number
+  title: string
 }>()
+
+const open = ref(false)
+
+defineShortcuts({
+  o: () => open.value = !open.value,
+})
 
 const { refresh, deleteCategory } = useCategoryList()
 const { showSuccess, showWarning, showError } = useAppToast()
@@ -34,7 +41,7 @@ const items: DropdownMenuItem[][] = [
     {
       label: '編集',
       icon: 'i-lucide-edit',
-      onSelect: () => console.log('編集', props.id),
+      onSelect: () => open.value = true,
     },
     {
       label: '削除',
@@ -60,6 +67,12 @@ const items: DropdownMenuItem[][] = [
       color="neutral"
       variant="ghost"
       icon="i-lucide-ellipsis-vertical"
+    />
+
+    <EditCategoryModal
+      :id="id"
+      v-model:open="open"
+      :title="title"
     />
   </UDropdownMenu>
 </template>
