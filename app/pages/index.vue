@@ -3,7 +3,7 @@ const { categoryList } = useCategoryList()
 </script>
 
 <template>
-  <UPageGrid>
+  <UPageGrid class="items-start">
     <UCard v-for="category in categoryList" :key="category.id">
       <div class="relative flex items-center justify-center">
         <h3 class="text-lg font-semibold flex items-center gap-1">
@@ -16,7 +16,7 @@ const { categoryList } = useCategoryList()
         </div>
       </div>
 
-      <ul v-if="category.notes.length > 0">
+      <ul v-if="category.notes.length > 0" class="mb-2">
         <li
           v-for="note in category.notes"
           :key="note.id"
@@ -31,6 +31,10 @@ const { categoryList } = useCategoryList()
       <p v-else>
         タスクはありません
       </p>
+
+      <div class="flex items-center justify-center">
+        <AddTaskModal :id="category.id" />
+      </div>
     </UCard>
   </UPageGrid>
 </template>
