@@ -14,5 +14,17 @@ export const useNotes = () => {
     }
   }
 
-  return { createNote }
+  const deleteNote = async (id: number) => {
+    try {
+      return await $fetch(`/api/notes/${id}`, {
+        method: 'DELETE',
+      })
+    }
+    catch (err: unknown) {
+      const error = err as { data?: unknown }
+      throw error.data || error
+    }
+  }
+
+  return { createNote, deleteNote }
 }
