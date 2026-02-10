@@ -39,16 +39,22 @@ export const createCategorySchema = z.object({
 
 export type CreateCategory = z.infer<typeof createCategorySchema>
 
+export const createNoteSchema = z.object({
+  content: z.string().min(1, '内容を入力してください'),
+  categoryId: z.number().nullable(),
+})
+
+export type CreateNote = z.infer<typeof createNoteSchema>
+
 /* =========
    Errors
 ========= */
 
 export const ApiErrorSchema = z.object({
   statusCode: z.number(),
-  data: z
-    .object({
-      message: z.string(),
-    }),
+  statusMessage: z.string(),
+  data: z.any().optional(),
+  message: z.string().optional(),
 })
 
 export type ApiError = z.infer<typeof ApiErrorSchema>
