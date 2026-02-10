@@ -20,11 +20,17 @@ const { categoryList } = useCategoryList()
         <li
           v-for="note in category.notes"
           :key="note.id"
-          class="flex items-center gap-2 border-b border-gray-300 dark:border-gray-700 pb-1"
+          class="flex gap-2 border-b border-gray-300 dark:border-gray-700 p-1"
         >
-          <span class="text-gray-800 dark:text-gray-200">
-            □ {{ note.content }}
+          <span class="text-gray-800 dark:text-gray-200 select-none w-4">
+            □
           </span>
+
+          <span class="text-gray-800 dark:text-gray-200 w-full">
+            {{ note.content }}
+          </span>
+
+          <CompleteTaskButton :id="note.id" class="flex-none self-center" />
         </li>
       </ul>
 
