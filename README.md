@@ -1,75 +1,46 @@
-# Nuxt Minimal Starter
+# 📝 Memo App
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+シンプルなメモ管理アプリです。
 
-## Setup
+Nuxt4 を使ったフルスタック構成で、CRUD機能・バリデーションまで一通り実装しています。
 
-Make sure to install dependencies:
+## 🚀 Features
 
-```bash
-# npm
-npm install
+- カテゴリごとのタスク管理
+- カテゴリの追加・編集・削除
+- タスクの追加・削除
+- ダークモード対応
+- API バリデーション（Zod）
+- トースト通知による操作フィードバック
+- Prisma Data Platformを利用したクラウドDB運用
 
-# pnpm
-pnpm install
+## 🛠 Tech Stack
 
-# yarn
-yarn install
+**Frontend**
 
-# bun
-bun install
-```
+- Nuxt 4
+- Vue 3
+- Nuxt UI
 
-## Development Server
+**Backend / Database**
 
-Start the development server on `http://localhost:3000`:
+- Nuxt Server API
+- Prisma ORM
+- Prisma Data Platform（Prisma Postgres）
 
-```bash
-# npm
-npm run dev
+**Validation / Schema**
 
-# pnpm
-pnpm dev
+- Zod
 
-# yarn
-yarn dev
+## ✨ Implementation Notes
 
-# bun
-bun run dev
-```
+- **Nuxt 4 の Server API** を利用してフロントエンドとバックエンドを同一プロジェクト内で構築し、
+  Nuxtだけで完結するフルスタック開発を体験しました。
 
-## Production
+- データベース操作には**Prisma ORM**を採用し、型安全にCRUD処理を実装しています。
+  またPrisma Data Platformを利用することで、クラウド上でデータベースを管理しました。
 
-Build the application for production:
+- APIの入力チェックには**Zod**を導入し、バリデーションと型定義をスキーマベースで統一しました。
+  フロントとサーバで同じルールを共有できるため、保守性の高い構成になっています。
 
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+- UIには**Nuxt UI**を採用し、コンポーネントを活用しながら開発速度と画面の統一感を意識しました。
