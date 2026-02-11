@@ -14,7 +14,7 @@
 
     <NuxtPage class="pt-5 px-10" />
     <UFooter>
-      変更しました
+      変更した
     </UFooter>
   </UApp>
 </template>
