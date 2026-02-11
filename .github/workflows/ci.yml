@@ -15,17 +15,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-
       - name: Install node
         uses: actions/setup-node@v6
         with:
           node-version: ${{ matrix.node }}
-          cache: ppm
+          cache: npm
 
       - name: Install dependencies
-        run: ppm install
+        run: npm install
 
       - name: Lint
         run: npm run lint
