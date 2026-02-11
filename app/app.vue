@@ -13,7 +13,8 @@
     </UHeader>
 
     <NuxtPage class="pt-5 px-10" />
-    変更しました
-    <UFooter />
+    <UFooter>
+      変更しました
+    </UFooter>
   </UApp>
 </template>
