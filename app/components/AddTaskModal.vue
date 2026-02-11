@@ -24,7 +24,7 @@ defineShortcuts({
 
 const onSubmit = async (event: FormSubmitEvent<CreateNote>) => {
   try {
-    await createNote(event.data)
+    await createNote(event)
     await refresh()
     showSuccess('タスクを追加しました', { progress: false })
     state.content = ''
