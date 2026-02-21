@@ -32,6 +32,12 @@ Nuxt4 を使ったフルスタック構成で、CRUD機能・バリデーショ�
 
 - Zod
 
+## 🏗 Architecture
+
+以下は本アプリの簡単な構成図です。
+
+![インフラ構成図](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/3954066/c3198e0b-69fc-43c9-8610-40f586952927.png)
+
 ## ✨ Implementation Notes
 
 - **Nuxt 4 の Server API** を利用してフロントエンドとバックエンドを同一プロジェクト内で構築し、
